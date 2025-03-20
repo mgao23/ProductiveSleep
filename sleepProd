@@ -7,15 +7,16 @@ csv = pd.read_csv("sleep_cycle_productivity.csv")
 
 print(csv.head())
 print(csv.columns)
-#csv["Sleep Category"]= pd.cut(csv["Total Sleep Hours"], bins=[0, 4, 6, 8, 10, 12], labels=["<4 hrs", "4-6 hrs", "6-8 hrs", "8-10 hrs", ">10 hrs"])
 
 #grouped the category by sleep duration and calculated average productivity score
 avg_prod = csv.groupby("Total Sleep Hours")["Productivity Score"].mean().reset_index()
 plt.figure(figsize=(10, 5))
 sns.lineplot(x="Total Sleep Hours", y="Productivity Score", data=avg_prod, marker="o")
 
-#sns.barplot(x=csv["Total Sleep Hours"], y=csv["Productivity Score"], data = avg_prod )
 plt.title("Impact of Sleep on Productivity")
 plt.xlabel("Sleep Duration (hours)")
 plt.ylabel("Productivity Score (1-10)")
 plt.show()
+
+#checking if there are any null datas 
+print(csv.isnull().sum())
