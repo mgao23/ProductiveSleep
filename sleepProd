@@ -20,3 +20,4 @@ plt.show()
 
 #checking if there are any null datas 
 print(csv.isnull().sum())
+print(csv.duplicated().sum())
